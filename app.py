@@ -1,5 +1,7 @@
 import streamlit as st
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 from loader import load_and_chunk_documents
 from embedder import create_vector_store, load_vector_store
 from query_engine import get_answer
