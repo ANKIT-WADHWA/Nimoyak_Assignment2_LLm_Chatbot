@@ -12,3 +12,4 @@ accelerate
 groq 
 streamlit 
 openpyxl
+langchain-groq
