@@ -1,0 +1,14 @@
+openai
+langchain 
+faiss-cpu
+python-dotenv
+pypdf
+sentence-transformers
+streamlit
+chromadb
+langchain-community
+transformers
+accelerate
+groq 
+streamlit 
+openpyxl
