@@ -1,21 +1,23 @@
 import os
+
+# Force CPU usage, disable parallel tokenizer threads
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-from langchain.vectorstores import FAISS
 from sentence_transformers import SentenceTransformer
+from langchain.vectorstores import FAISS
 
 class CpuSafeHuggingFaceEmbeddings:
     def __init__(self, model_name="all-MiniLM-L6-v2"):
-        # Initialize model explicitly on CPU
+        # Force device to CPU explicitly in SentenceTransformer constructor
         self.model = SentenceTransformer(model_name, device='cpu')
 
     def embed_documents(self, texts):
-        # Encode list of documents (texts)
+        # Encode list of texts to embeddings
         return self.model.encode(texts, convert_to_tensor=False).tolist()
 
     def embed_query(self, text):
-        # Encode single query text
+        # Encode a single query string to embedding
         return self.model.encode(text, convert_to_tensor=False).tolist()
 
 def get_hf_embeddings():
